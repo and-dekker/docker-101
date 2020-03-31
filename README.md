@@ -409,7 +409,7 @@ So far you have been running containers using an image pulled from [docker hub][
 
 In this exercise, you will be building your own image containing a web application.
 
-Have a look at the contents of the `./hello-world` folder.
+Have a look at the contents of the `./src/hello-world` folder.
 
 This folder contains a simple "hello world" *express.js* web app, with the usual *node.js* artifacts such as:
 
@@ -467,7 +467,7 @@ The *PATH* used was `.`, this means the current directory or the directory that 
 
 > But what does Docker do when building this image?
 
-Remember the `Dockerfile` in the `./hello-world` folder? This file is a set of instructions that docker uses to build an image and tells docker what to do when a container is spun up from the image.
+Remember the `Dockerfile` in the `./src/hello-world` folder? This file is a set of instructions that docker uses to build an image and tells docker what to do when a container is spun up from the image.
 
 Let's take a look at the `Dockerfile`:
 
@@ -487,7 +487,7 @@ CMD ["npm", "run", "start"]
 
 The first part, `FROM node:13.10.1-alpine3.11`, tells docker to build the image using a base image. The base image used is named after `FROM`, in this instance the base image is: `node:13.10.1-alpine3.11`.
 
-The second part, `COPY . /root/app`, tells docker to copy the contents from `.` (the current directory, `./hello-world`) into a directory within the container, `/root/app`.
+The second part, `COPY . /root/app`, tells docker to copy the contents from `.` (the current directory, `./src/hello-world`) into a directory within the container, `/root/app`.
 
 > **Note**  
 > All contents are copied from `.`, except for files and folders specified in the `.dockerignore` file. The `.dockerignore` file is like `.gitignore`.
@@ -682,7 +682,7 @@ docker stop my-container
 >  
 > Further theory and more information how to choose the right type of mount can be found in the [official docs][Docker Storage].
 
-Point your terminal to the `./bind-mount-example` folder in this repository:
+Point your terminal to the `./src/bind-mount-example` folder in this repository:
 
 ```bash
 cd ./bind-mount-example
@@ -708,7 +708,7 @@ Further storage options for `docker run` can be found in the [official docs][doc
 > "$(pwd)" is a command that returns the directory that this command was executed in as an absolute path.  
 > More information about bind mounts can be found in the [official docs](https://docs.docker.com/storage/bind-mounts/)
 
-Try changing the content of `./index.html` and refreshing the webpage at [http://localhost:8080](http://localhost:8080).
+Try changing the content of `./src/index.html` and refreshing the webpage at [http://localhost:8080](http://localhost:8080).
 
 > **Tip**  
 > A good time to use a bind mount is when you need to test files that you're working on locally inside a container.  
@@ -814,7 +814,7 @@ Run this command to see all of the `docker volume` commands available to you:
 docker volume --help
 ```
 
-Next, point your terminal into the `./volume-example` directory:
+Next, point your terminal into the `./src/volume-example` directory:
 
 ```bash
 cd ./volume-example
@@ -848,7 +848,7 @@ local      778a037a38b58f4570e3cf7fa868b1d833fad18e36796802c376aadca3ba9fe6
 
 A volume was created with a random name. Why?
 
-Let's look at the `Dockerfile` in the `./volume-example` directory:
+Let's look at the `Dockerfile` in the `./src/volume-example` directory:
 
 ```docker
 FROM node:13.10.1-alpine3.11
@@ -936,7 +936,7 @@ docker volume rm volex-vol
 
 ### 10. Environment Variables
 
-Point your terminal into the `./environment-variables-example` directory:
+Point your terminal into the `./src/environment-variables-example` directory:
 
 ```bash
 cd ./environment-variables-example
@@ -997,7 +997,7 @@ Further details of environment variables in the `Dockerfile` can be found in the
 
 ### 11. Networking
 
-Point your terminal into the `./networking-example` directory:
+Point your terminal into the `./src/networking-example` directory:
 
 ```bash
 cd ./networking-example
@@ -1257,9 +1257,9 @@ Here are the requirements and considerations for running a dockerized wordpress 
 - phpmyadmin needs to be able to find and access the database
 - the database contents need to be persisted
 
-Have a look at the `yaml` file, `docker-compose.yml`, in the folder `./docker-compose-example`. This holds all of the docker configuration to address the above considerations.
+Have a look at the `yaml` file, `docker-compose.yml`, in the folder `./src/docker-compose-example`. This holds all of the docker configuration to address the above considerations.
 
-Point your terminal to the `./docker-compose-example` folder in this repository:
+Point your terminal to the `./src/docker-compose-example` folder in this repository:
 
 ```bash
 cd ./docker-compose-example
@@ -1273,7 +1273,7 @@ docker-compose up
 
 There will be a lot of activity in your terminal, the container environment is running the in *foreground*.
 
-Also, a whole bunch of wordpress files will have been created into the `./docker-compose-example` folder.
+Also, a whole bunch of wordpress files will have been created into the `./src/docker-compose-example` folder.
 
 Navigate to [http://localhost:8000/](http://localhost:8000/) in your browser, this will take you through the wordpress installation. Go ahead and do the installation.
 
@@ -1455,15 +1455,15 @@ These challenges build upon the concepts, already learned, to take them further.
 
 This challenge is designed to reinforce your knowledge of *mount points* and the `bind mount`.
 
-During the exercise [9. Storage](#9-storage), you created an image from the `Dockerfile` in the `./volume-example`.
+During the exercise [9. Storage](#9-storage), you created an image from the `Dockerfile` in the `./src/volume-example`.
 
 > **The Challenge**  
 
-Spin up a container using that image and using a `bind mount` to map the directory `./volume-example/data/` to the mount point specified in the `Dockerfile`.
+Spin up a container using that image and using a `bind mount` to map the directory `./src/volume-example/data/` to the mount point specified in the `Dockerfile`.
 
 > **Questions**  
 
-1. Are any files created in `./volume-example/data/` after running the container?  
+1. Are any files created in `./src/volume-example/data/` after running the container?  
 2. What are these files called?  
 3. What are the contents of these files?  
 
@@ -1475,8 +1475,8 @@ This challenge is designed to reinforce your knowledge of networks and how conta
 
 > **Setup**  
 
-- There is a web app, `webapp`, in the folder `./app-db-challenge/app`.
-- There is a `docker-compose.yml` in the folder `./app-db-challenge`.
+- There is a web app, `webapp`, in the folder `./src/app-db-challenge/app`.
+- There is a `docker-compose.yml` in the folder `./src/app-db-challenge`.
 
 The compose file is designed to spin up a database server instance and spin up an instance of `webapp`.
 
@@ -1485,7 +1485,7 @@ The compose file is designed to spin up a database server instance and spin up a
 > **Challenge**  
 
 1. Build the `Dockerfile` for `webapp` and tag it with `appdbchallenge:latest`.
-2. Spin up the `docker-compose.yml`, in the *foreground*, from the folder `./app-db-challenge`.
+2. Spin up the `docker-compose.yml`, in the *foreground*, from the folder `./src/app-db-challenge`.
 
 Your terminal will be displaying an error from `webapp`:
 
@@ -1547,7 +1547,7 @@ Spinning up both containers required many options to be passed into `docker run`
 
 > **Setup**  
 
-- There is an empty `docker-compose.yml` file in the folder `./docker-compose-from-scratch-challenge`.
+- There is an empty `docker-compose.yml` file in the folder `./src/docker-compose-from-scratch-challenge`.
 
 > **The Challenge**  
 
